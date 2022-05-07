@@ -519,27 +519,32 @@ float* CCubeMesh::CRandomRail(float fWidth , float fHeight, float fDepth) {
 	//		vertex_list[(i * 20) + (((k / 5) * 3) + 2)] = ;//z
 	//	}
 	//}
+
 	float t{};
-	for (int i=0; i < 100; i += 5) {
-		t = 0.005*i;
-		vertex_list[(i / 5) * 3] = (2 * t*t - 3 * t + 1) * default_vertex[0] + (-4 * t * t + 4 * t) * default_vertex[3] + (2 * t * t - t) * default_vertex[6];
-		vertex_list[(i / 5) * 3+1] = (2 * t*t - 3 * t + 1) * default_vertex[1] + (-4 * t * t + 4 * t) * default_vertex[4] + (2 * t * t - t) * default_vertex[7];
-		vertex_list[(i / 5) * 3+2] = (2 * t*t - 3 * t + 1) * default_vertex[2] + (-4 * t * t + 4 * t) * default_vertex[5] + (2 * t * t - t) * default_vertex[8];
+	for (int i = 0; i < 100; i += 5) {
+		t = float(0.005 * i);
+		vertex_list[(i / 5) * 3] = (2 * t * t - 3 * t + 1) * default_vertex[0] + (-4 * t * t + 4 * t) * default_vertex[3] + (2 * t * t - t) * default_vertex[6];
+		vertex_list[(i / 5) * 3 + 1] = (2 * t * t - 3 * t + 1) * default_vertex[1] + (-4 * t * t + 4 * t) * default_vertex[4] + (2 * t * t - t) * default_vertex[7];
+		vertex_list[(i / 5) * 3 + 2] = (2 * t * t - 3 * t + 1) * default_vertex[2] + (-4 * t * t + 4 * t) * default_vertex[5] + (2 * t * t - t) * default_vertex[8];
+
 	}
 	for (int i = 0; i < 100; i += 5) {
-		t = 0.01*i;
-		vertex_list[(i / 5) * 3] = ((-t * t * t + 2 * t * t - t) * default_vertex[0] + (3 * t * t * t - 5 * t * t + 2) * default_vertex[3] + (-3 * t * t * t + 4 * t * t + t) * default_vertex[6] + (t * t * t - t * t) * default_vertex[9]) / 2;
-		vertex_list[(i / 5) * 3 + 1] = ((-t * t * t + 2 * t * t - t) * default_vertex[1] + (3 * t * t * t - 5 * t * t + 2) * default_vertex[4] + (-3 * t * t * t + 4 * t * t + t) * default_vertex[7] + (t * t * t - t * t) * default_vertex[10]) / 2;
-		vertex_list[(i / 5) * 3 + 2] = ((-t * t * t + 2 * t * t - t) * default_vertex[2] + (3 * t * t * t - 5 * t * t + 2) * default_vertex[5] + (-3 * t * t * t + 4 * t * t + t) * default_vertex[8] + (t * t * t - t * t) * default_vertex[11]) / 2;
+		t = float(0.01 * i);
+		vertex_list[(i / 5) * 3 + 60] = ((-t * t * t + 2 * t * t - t) * default_vertex[0] + (3 * t * t * t - 5 * t * t + 2) * default_vertex[3] + (-3 * t * t * t + 4 * t * t + t) * default_vertex[6] + (t * t * t - t * t) * default_vertex[9]) / 2;
+		vertex_list[(i / 5) * 3 + 61] = ((-t * t * t + 2 * t * t - t) * default_vertex[1] + (3 * t * t * t - 5 * t * t + 2) * default_vertex[4] + (-3 * t * t * t + 4 * t * t + t) * default_vertex[7] + (t * t * t - t * t) * default_vertex[10]) / 2;
+		vertex_list[(i / 5) * 3 + 62] = ((-t * t * t + 2 * t * t - t) * default_vertex[2] + (3 * t * t * t - 5 * t * t + 2) * default_vertex[5] + (-3 * t * t * t + 4 * t * t + t) * default_vertex[8] + (t * t * t - t * t) * default_vertex[11]) / 2;
+
 	}
 	for (int k = 2; k < 9; ++k) {
 		for (int i = 100; i < 200; i += 5) {
-			t = 0.005 * i;
-			vertex_list[(k * 20) + ((i / 5) * 3)] = (2 * t * t - 3 * t + 1) * default_vertex[((k - 1) * 3) % 24] + (-4 * t * t + 4 * t) * default_vertex[(k * 3) % 24] + (2 * t * t - t) * default_vertex[((k + 1) * 3) % 24];
-			vertex_list[(k * 20) + ((i / 5) * 3) + 1] = (2 * t * t - 3 * t + 1) * default_vertex[((k - 1) * 3 + 1) % 24] + (-4 * t * t + 4 * t) * default_vertex[(k * 3 + 1) % 24] + (2 * t * t - t) * default_vertex[((k + 1) * 3 + 1) % 24];
-			vertex_list[(k * 20) + ((i / 5) * 3) + 2] = (2 * t * t - 3 * t + 1) * default_vertex[((k - 1) * 3 + 2) % 24] + (-4 * t * t + 4 * t) * default_vertex[(k * 3 + 2) % 24] + (2 * t * t - t) * default_vertex[((k + 1) * 3 + 2) % 24];
+			t = float(0.005 * i);
+			vertex_list[((k - 1) * 60) + ((i / 5) * 3)] = (2 * t * t - 3 * t + 1) * default_vertex[((k - 1) * 3) % 24] + (-4 * t * t + 4 * t) * default_vertex[(k * 3) % 24] + (2 * t * t - t) * default_vertex[((k + 1) * 3) % 24];
+			vertex_list[((k - 1) * 60) + ((i / 5) * 3) + 1] = (2 * t * t - 3 * t + 1) * default_vertex[((k - 1) * 3 + 1) % 24] + (-4 * t * t + 4 * t) * default_vertex[(k * 3 + 1) % 24] + (2 * t * t - t) * default_vertex[((k + 1) * 3 + 1) % 24];
+			vertex_list[((k - 1) * 60) + ((i / 5) * 3) + 2] = (2 * t * t - 3 * t + 1) * default_vertex[((k - 1) * 3 + 2) % 24] + (-4 * t * t + 4 * t) * default_vertex[(k * 3 + 2) % 24] + (2 * t * t - t) * default_vertex[((k + 1) * 3 + 2) % 24];
+
+
 		}
 	}
 
-	return default_vertex;
+	return vertex_list;
 }
