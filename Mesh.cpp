@@ -541,5 +541,5 @@ float* CCubeMesh::CRandomRail(float fWidth , float fHeight, float fDepth) {
 		}
 	}
 
-	return vertex_list;
+	return default_vertex;
 }
