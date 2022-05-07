@@ -62,6 +62,8 @@ class CCubeMesh : public CMesh
 public:
 	CCubeMesh(float fWidth = 4.0f, float fHeight = 4.0f, float fDepth = 4.0f);
 	virtual ~CCubeMesh() { }
+	// 스플라인 
+	float* CRandomRail(float fWidth = 4.0f, float fHeight = 4.0f, float fDepth = 4.0f);
 };
 
 class CWallMesh : public CMesh
@@ -86,3 +88,4 @@ public:
 
 	virtual void Render(HDC hDCFrameBuffer);
 };
+

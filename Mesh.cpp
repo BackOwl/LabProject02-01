@@ -473,3 +473,73 @@ void CAxisMesh::Render(HDC hDCFrameBuffer)
 	::SelectObject(hDCFrameBuffer, hOldPen);
 	::DeleteObject(hPen);
 }
+
+//스플라인 
+float* CCubeMesh::CRandomRail(float fWidth , float fHeight, float fDepth) {
+	//180 디폴트. 20개씩. 0.4 이내에서 
+	float default_vertex[24]{};
+	float vertex_list[540]{};
+	//+++
+	default_vertex[0] = fWidth;
+	default_vertex[1] = fHeight;
+	default_vertex[2] = fDepth;
+	//++-
+	default_vertex[3] = fWidth;
+	default_vertex[4] = fHeight;
+	default_vertex[5] = -fDepth;
+	// -++
+	default_vertex[6] = -fWidth;
+	default_vertex[7] = fHeight;
+	default_vertex[8] = fDepth;
+	// -+-
+	default_vertex[9] = -fWidth;
+	default_vertex[10] = fHeight;
+	default_vertex[11] = -fDepth;
+	// --+
+	default_vertex[12] = -fWidth;
+	default_vertex[13] = -fHeight;
+	default_vertex[14] = fDepth;
+	//---
+	default_vertex[15] = -fWidth;
+	default_vertex[16] = -fHeight;
+	default_vertex[17] = -fDepth;
+	///+-+
+	default_vertex[18] = fWidth;
+	default_vertex[19] = -fHeight;
+	default_vertex[20] = fDepth;
+	//+--
+	default_vertex[21] = fWidth;
+	default_vertex[22] = -fHeight;
+	default_vertex[23] = -fDepth;
+
+	//for (int i = 0; i <9;++i) {
+	//	for (int k = 0; k < 100; k+=5) {
+	//		vertex_list[(i * 20) + ((k / 5) * 3)] = ;//x
+	//		vertex_list[(i * 20) + (((k / 5) * 3) + 1)] = ;//y
+	//		vertex_list[(i * 20) + (((k / 5) * 3) + 2)] = ;//z
+	//	}
+	//}
+	float t{};
+	for (int i=0; i < 100; i += 5) {
+		t = 0.005*i;
+		vertex_list[(i / 5) * 3] = (2 * t*t - 3 * t + 1) * default_vertex[0] + (-4 * t * t + 4 * t) * default_vertex[3] + (2 * t * t - t) * default_vertex[6];
+		vertex_list[(i / 5) * 3+1] = (2 * t*t - 3 * t + 1) * default_vertex[1] + (-4 * t * t + 4 * t) * default_vertex[4] + (2 * t * t - t) * default_vertex[7];
+		vertex_list[(i / 5) * 3+2] = (2 * t*t - 3 * t + 1) * default_vertex[2] + (-4 * t * t + 4 * t) * default_vertex[5] + (2 * t * t - t) * default_vertex[8];
+	}
+	for (int i = 0; i < 100; i += 5) {
+		t = 0.01*i;
+		vertex_list[(i / 5) * 3] = ((-t * t * t + 2 * t * t - t) * default_vertex[0] + (3 * t * t * t - 5 * t * t + 2) * default_vertex[3] + (-3 * t * t * t + 4 * t * t + t) * default_vertex[6] + (t * t * t - t * t) * default_vertex[9]) / 2;
+		vertex_list[(i / 5) * 3 + 1] = ((-t * t * t + 2 * t * t - t) * default_vertex[1] + (3 * t * t * t - 5 * t * t + 2) * default_vertex[4] + (-3 * t * t * t + 4 * t * t + t) * default_vertex[7] + (t * t * t - t * t) * default_vertex[10]) / 2;
+		vertex_list[(i / 5) * 3 + 2] = ((-t * t * t + 2 * t * t - t) * default_vertex[2] + (3 * t * t * t - 5 * t * t + 2) * default_vertex[5] + (-3 * t * t * t + 4 * t * t + t) * default_vertex[8] + (t * t * t - t * t) * default_vertex[11]) / 2;
+	}
+	for (int k = 2; k < 9; ++k) {
+		for (int i = 100; i < 200; i += 5) {
+			t = 0.005 * i;
+			vertex_list[(k * 20) + ((i / 5) * 3)] = (2 * t * t - 3 * t + 1) * default_vertex[((k - 1) * 3) % 24] + (-4 * t * t + 4 * t) * default_vertex[(k * 3) % 24] + (2 * t * t - t) * default_vertex[((k + 1) * 3) % 24];
+			vertex_list[(k * 20) + ((i / 5) * 3) + 1] = (2 * t * t - 3 * t + 1) * default_vertex[((k - 1) * 3 + 1) % 24] + (-4 * t * t + 4 * t) * default_vertex[(k * 3 + 1) % 24] + (2 * t * t - t) * default_vertex[((k + 1) * 3 + 1) % 24];
+			vertex_list[(k * 20) + ((i / 5) * 3) + 2] = (2 * t * t - 3 * t + 1) * default_vertex[((k - 1) * 3 + 2) % 24] + (-4 * t * t + 4 * t) * default_vertex[(k * 3 + 2) % 24] + (2 * t * t - t) * default_vertex[((k + 1) * 3 + 2) % 24];
+		}
+	}
+
+	return vertex_list;
+}

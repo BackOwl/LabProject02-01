@@ -32,21 +32,46 @@ void CScene::BuildObjects()
 	m_pWallsObject->m_xmOOBBPlayerMoveCheck = BoundingOrientedBox(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(fHalfWidth, fHalfHeight, fHalfDepth * 0.05f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f));
 
 	//큐브 객체 10개 생성하기 
-	CCubeMesh* pCubeMesh = new CCubeMesh(4.0f, 4.0f, 4.0f);
+	CCubeMesh* pCubeMesh = new CCubeMesh(1.0f, 1.0f, 1.0f);
 
-	m_nObjects = 10;
+	m_nObjects = 180;//10
 	m_ppObjects = new CGameObject * [m_nObjects];
+	float* m_Objects_pos = pCubeMesh->CRandomRail();
 
-	m_ppObjects[0] = new CExplosiveObject();
+	
+
+	for (int i = 0; i < 160; ++i) {
+		m_ppObjects[i] = new CExplosiveObject();
+		m_ppObjects[i]->SetMesh(pCubeMesh);
+		m_ppObjects[i]->SetColor(RGB(255, 0, 0));
+		m_ppObjects[i]->SetPosition(m_Objects_pos[i*3], m_Objects_pos[(i * 3)+1], m_Objects_pos[(i * 3)+2]);
+		m_ppObjects[i]->SetRotationAxis(XMFLOAT3(0.0f, 1.0f, 1.0f));
+		m_ppObjects[i]->SetRotationSpeed(0.0f);
+		m_ppObjects[i]->SetMovingDirection(XMFLOAT3(0.0f, 0.0f, 0.0f));
+		m_ppObjects[i]->SetMovingSpeed(0.5f);
+		
+	}for (int i = 160; i < 180; ++i) {
+		m_ppObjects[i] = new CExplosiveObject();
+		m_ppObjects[i]->SetMesh(pCubeMesh);
+		m_ppObjects[i]->SetColor(RGB(255, 0, 255));
+		m_ppObjects[i]->SetPosition(m_Objects_pos[i*3], m_Objects_pos[(i * 3)+1], m_Objects_pos[(i * 3)+2]);
+		m_ppObjects[i]->SetRotationAxis(XMFLOAT3(0.0f, 1.0f, 1.0f));
+		m_ppObjects[i]->SetRotationSpeed(0.0f);
+		m_ppObjects[i]->SetMovingDirection(XMFLOAT3(0.0f, 0.0f, 0.0f));
+		m_ppObjects[i]->SetMovingSpeed(0.5f);
+		
+	}
+
+	/*m_ppObjects[0] = new CExplosiveObject();
 	m_ppObjects[0]->SetMesh(pCubeMesh);
 	m_ppObjects[0]->SetColor(RGB(255, 0, 0));
 	m_ppObjects[0]->SetPosition(-13.5f, 0.0f, -14.0f);
 	m_ppObjects[0]->SetRotationAxis(XMFLOAT3(0.0f, 1.0f, 1.0f));
 	m_ppObjects[0]->SetRotationSpeed(90.0f);
 	m_ppObjects[0]->SetMovingDirection(XMFLOAT3(1.0f, 0.0f, 0.0f));
-	m_ppObjects[0]->SetMovingSpeed(10.5f);
+	m_ppObjects[0]->SetMovingSpeed(10.5f);*/
 
-	m_ppObjects[1] = new CExplosiveObject();
+	/*m_ppObjects[1] = new CExplosiveObject();
 	m_ppObjects[1]->SetMesh(pCubeMesh);
 	m_ppObjects[1]->SetColor(RGB(0, 0, 255));
 	m_ppObjects[1]->SetPosition(+13.5f, 0.0f, -14.0f);
@@ -125,7 +150,7 @@ void CScene::BuildObjects()
 	m_ppObjects[9]->SetRotationAxis(XMFLOAT3(1.0f, 1.0f, 0.0f));
 	m_ppObjects[9]->SetRotationSpeed(90.06f);
 	m_ppObjects[9]->SetMovingDirection(XMFLOAT3(-0.0f, 0.0f, -1.0f));
-	m_ppObjects[9]->SetMovingSpeed(15.0f);
+	m_ppObjects[9]->SetMovingSpeed(15.0f);*/
 
 #ifdef _WITH_DRAW_AXIS
 	m_pWorldAxis = new CGameObject();
