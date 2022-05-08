@@ -158,7 +158,6 @@ CGameObject* CScene::PickObjectPointedByCursor(int xClient, int yClient, CCamera
 	}
 	return(pNearestObject);
 }
-
 void CScene::CheckObjectByObjectCollisions()
 {
 	for (int i = 0; i < m_nObjects; i++) m_ppObjects[i]->m_pObjectCollided = NULL;
@@ -266,6 +265,31 @@ void CScene::CheckObjectByBulletCollisions()
 			}
 		}
 	}
+}
+CGameObject* CScene::RailPlayer(int m_nObjects, CCamera* pCamera) {
+	m_count = (m_count + 1) % m_nObjects;
+	XMFLOAT3 xmf3PickPosition;
+	xmf3PickPosition.x = (((2.0f * m_Objects_pos[m_count * 3]) / (float)pCamera->m_Viewport.m_nWidth) - 1) / pCamera->m_xmf4x4PerspectiveProject._11;
+	xmf3PickPosition.y = -(((2.0f * m_Objects_pos[(m_count * 3) + 1]) / (float)pCamera->m_Viewport.m_nHeight) - 1) / pCamera->m_xmf4x4PerspectiveProject._22;
+	xmf3PickPosition.z = 1.0f * m_Objects_pos[(m_count * 3) + 2];
+
+	XMVECTOR xmvPickPosition = XMLoadFloat3(&xmf3PickPosition);
+	XMMATRIX xmmtxView = XMLoadFloat4x4(&pCamera->m_xmf4x4View);
+
+	int nIntersected = 0;
+	float fNearestHitDistance = FLT_MAX;
+	CGameObject* pNearestObject = NULL;
+	for (int i = 0; i < m_nObjects; i++)
+	{
+		float fHitDistance = FLT_MAX;
+		nIntersected = m_ppObjects[i]->PickObjectByRayIntersection(xmvPickPosition, xmmtxView, &fHitDistance);
+		if ((nIntersected > 0) && (fHitDistance < fNearestHitDistance))
+		{
+			fNearestHitDistance = fHitDistance;
+			pNearestObject = m_ppObjects[i];
+		}
+	}
+	return(pNearestObject);
 }
 
 void CScene::Animate(float fElapsedTime)

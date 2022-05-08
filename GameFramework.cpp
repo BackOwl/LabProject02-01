@@ -139,6 +139,11 @@ void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPA
 			((CAirplanePlayer*)m_pPlayer)->FireBullet(m_pLockedObject); //ÃÑ¾Ë½î±â 
 			m_pLockedObject = NULL;
 			break;
+		case VK_SPACE:
+			//m_pLockedObject= m_pScene->RailPlayer(160,m_pPlayer->m_pCamera); //ÀÌµ¿
+			m_pPlayer->Move(m_pScene->m_Objects_pos);
+			break;
+
 		default:
 			m_pScene->OnProcessingKeyboardMessage(hWnd, nMessageID, wParam, lParam);
 			break;
@@ -190,8 +195,6 @@ void CGameFramework::ProcessInput()
 		if (pKeyBuffer[VK_RIGHT] & 0xF0) dwDirection |= DIR_RIGHT;
 		if (pKeyBuffer[VK_PRIOR] & 0xF0) dwDirection |= DIR_UP;
 		if (pKeyBuffer[VK_NEXT] & 0xF0) dwDirection |= DIR_DOWN;
-
-		if (pKeyBuffer[VK_SPACE]&0xF0) dwDirection |= DIR_SPACE;
 
 		if (dwDirection) m_pPlayer->Move(dwDirection, 0.15f);
 	}

@@ -39,12 +39,6 @@ void CPlayer::Move(DWORD dwDirection, float fDistance)
 		if (dwDirection & DIR_UP) xmf3Shift = Vector3::Add(xmf3Shift, m_xmf3Up, fDistance);
 		if (dwDirection & DIR_DOWN) xmf3Shift = Vector3::Add(xmf3Shift, m_xmf3Up, -fDistance);
 
-		if (dwDirection & DIR_SPACE) { //xmf3Shift = Vector3::Add(XMFLOAT3(0.0, 0.0, 0.0), m_xmf3Up, -fDistance); 
-			m_count = (m_count + 1) % 180;
-			xmf3Shift = XMFLOAT3(m_object[m_count * 3], m_object[(m_count * 3) + 1], m_object[(m_count * 3) + 2]);
-			xmf3Shift = Vector3::Add(xmf3Shift, m_xmf3Up, fDistance);
-		}
-
 		Move(xmf3Shift, true);
 	}
 }
@@ -65,6 +59,13 @@ void CPlayer::Move(XMFLOAT3& xmf3Shift, bool bUpdateVelocity)
 void CPlayer::Move(float x, float y, float z)
 {
 	Move(XMFLOAT3(x, y, z), false);
+}
+
+void CPlayer::Move(float* m_ppObjects)
+{
+	m_count = (m_count + 1) % 150;
+	SetPosition(m_ppObjects[m_count * 3], m_ppObjects[(m_count * 3) + 1] , m_ppObjects[(m_count * 3) + 2] );
+//m_xmf3Velocity = Vector3::Add(m_xmf3Velocity, XMFLOAT3(m_ppObjects[m_count * 3]*0.06, m_ppObjects[(m_count * 3) + 1]*0.06, m_ppObjects[(m_count * 3) + 2]*0.06));
 }
 
 void CPlayer::Rotate(float fPitch, float fYaw, float fRoll)
@@ -137,7 +138,7 @@ void CPlayer::Render(HDC hDCFrameBuffer, CCamera* pCamera)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-// ¾Ö³Ù ¹¹Áö?.... ÃÑ¾Ë?
+// ÃÑ¾Ë?
 CAirplanePlayer::CAirplanePlayer()
 {
 	CCubeMesh* pBulletMesh = new CCubeMesh(1.0f, 4.0f, 1.0f);
@@ -221,3 +222,4 @@ void CAirplanePlayer::FireBullet(CGameObject* pLockedObject)
 		}
 	}
 }
+

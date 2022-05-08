@@ -39,6 +39,8 @@ public:
 	void Move(XMFLOAT3& xmf3Shift, bool bUpdateVelocity);
 	void Move(float x, float y, float z);
 
+	void Move(float* m_ppObjects);
+
 	void Rotate(float fPitch = 0.0f, float fYaw = 0.0f, float fRoll = 0.0f);
 
 	void SetCameraOffset(XMFLOAT3& xmf3CameraOffset);
@@ -48,6 +50,8 @@ public:
 	virtual void OnUpdateTransform();
 	virtual void Animate(float fElapsedTime);
 	virtual void Render(HDC hDCFrameBuffer, CCamera* pCamera);
+
+	
 
 	void SetCamera(CCamera* pCamera) { m_pCamera = pCamera; }
 	CCamera* GetCamera() { return(m_pCamera); }
@@ -65,6 +69,7 @@ public:
 	CBulletObject*				m_ppBullets[BULLETS];
 
 	void FireBullet(CGameObject* pLockedObject);
+	
 
 	virtual void OnUpdateTransform();
 	virtual void Animate(float fElapsedTime);

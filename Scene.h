@@ -9,12 +9,14 @@ class CScene
 public:
 	CScene(CPlayer *pPlayer);
 	virtual ~CScene();
-
+	CGameObject					**m_ppObjects = NULL;
+	int m_count = 0;
+	float* m_Objects_pos;
 private:
 	int							m_nObjects = 0;
-	float*						m_Objects_pos;
+	
 
-	CGameObject					**m_ppObjects = NULL;
+	//CGameObject					**m_ppObjects = NULL;
 
 	CWallsObject*				m_pWallsObject = NULL;
 
@@ -38,7 +40,7 @@ public:
 
 	virtual void OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
 	virtual void OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
-
+	CGameObject* RailPlayer(int m_nObjects, CCamera* pCamera);
 	CGameObject* PickObjectPointedByCursor(int xClient, int yClient, CCamera* pCamera);
 };
 
