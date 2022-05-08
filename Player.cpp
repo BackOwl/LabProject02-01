@@ -63,8 +63,9 @@ void CPlayer::Move(float x, float y, float z)
 
 void CPlayer::Move(float* m_ppObjects)
 {
-	m_count = (m_count + 1) % 150;
-	SetPosition(m_ppObjects[m_count * 3], m_ppObjects[(m_count * 3) + 1] , m_ppObjects[(m_count * 3) + 2] );
+		m_count = (m_count + 1) % 150;
+		SetPosition(m_ppObjects[m_count * 3], m_ppObjects[(m_count * 3) + 1], m_ppObjects[(m_count * 3) + 2]);
+
 //m_xmf3Velocity = Vector3::Add(m_xmf3Velocity, XMFLOAT3(m_ppObjects[m_count * 3]*0.06, m_ppObjects[(m_count * 3) + 1]*0.06, m_ppObjects[(m_count * 3) + 2]*0.06));
 }
 
