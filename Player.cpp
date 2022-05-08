@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "Mesh.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -25,7 +26,7 @@ void CPlayer::SetCameraOffset(XMFLOAT3& xmf3CameraOffset)
 	m_pCamera->SetLookAt(Vector3::Add(m_xmf3Position, m_xmf3CameraOffset), m_xmf3Position, m_xmf3Up);
 	m_pCamera->GenerateViewMatrix();
 }
-
+//비행기 움직이는 곳 
 void CPlayer::Move(DWORD dwDirection, float fDistance)
 {
 	if (dwDirection)
@@ -37,6 +38,12 @@ void CPlayer::Move(DWORD dwDirection, float fDistance)
 		if (dwDirection & DIR_LEFT) xmf3Shift = Vector3::Add(xmf3Shift, m_xmf3Right, -fDistance);
 		if (dwDirection & DIR_UP) xmf3Shift = Vector3::Add(xmf3Shift, m_xmf3Up, fDistance);
 		if (dwDirection & DIR_DOWN) xmf3Shift = Vector3::Add(xmf3Shift, m_xmf3Up, -fDistance);
+
+		if (dwDirection & DIR_SPACE) { //xmf3Shift = Vector3::Add(XMFLOAT3(0.0, 0.0, 0.0), m_xmf3Up, -fDistance); 
+			m_count = (m_count + 1) % 180;
+			xmf3Shift = XMFLOAT3(m_object[m_count * 3], m_object[(m_count * 3) + 1], m_object[(m_count * 3) + 2]);
+			xmf3Shift = Vector3::Add(xmf3Shift, m_xmf3Up, fDistance);
+		}
 
 		Move(xmf3Shift, true);
 	}

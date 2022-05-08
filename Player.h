@@ -24,6 +24,9 @@ public:
 	float           			m_fYaw = 0.0f;
 	float           			m_fRoll = 0.0f;
 
+	int							m_count = 0;
+	float* m_object = NULL;
+
 	CCamera*					m_pCamera = NULL;
 
 public:

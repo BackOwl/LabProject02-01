@@ -79,6 +79,9 @@ void CGameFramework::BuildObjects()
 	m_pPlayer->SetCamera(pCamera);
 	m_pPlayer->SetCameraOffset(XMFLOAT3(0.0f, 5.0f, -15.0f));
 
+	CCubeMesh* pCubeMesh = new CCubeMesh(1.0f, 1.0f, 1.0f);
+	m_pPlayer->m_object = pCubeMesh-> CRandomRail(20.0, 10.0, 20.0, 20);
+
 	//scene¶û bulid°´Ã¼ ÀÌ¾îÁÖ´Â °÷ 
 	m_pScene = new CScene(m_pPlayer);
 	m_pScene->BuildObjects();
@@ -133,7 +136,7 @@ void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPA
 		case VK_RETURN:
 			break;
 		case VK_CONTROL:
-			((CAirplanePlayer*)m_pPlayer)->FireBullet(m_pLockedObject);
+			((CAirplanePlayer*)m_pPlayer)->FireBullet(m_pLockedObject); //ÃÑ¾Ë½î±â 
 			m_pLockedObject = NULL;
 			break;
 		default:
@@ -187,6 +190,8 @@ void CGameFramework::ProcessInput()
 		if (pKeyBuffer[VK_RIGHT] & 0xF0) dwDirection |= DIR_RIGHT;
 		if (pKeyBuffer[VK_PRIOR] & 0xF0) dwDirection |= DIR_UP;
 		if (pKeyBuffer[VK_NEXT] & 0xF0) dwDirection |= DIR_DOWN;
+
+		if (pKeyBuffer[VK_SPACE]&0xF0) dwDirection |= DIR_SPACE;
 
 		if (dwDirection) m_pPlayer->Move(dwDirection, 0.15f);
 	}

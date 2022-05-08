@@ -12,6 +12,8 @@ public:
 
 private:
 	int							m_nObjects = 0;
+	float*						m_Objects_pos;
+
 	CGameObject					**m_ppObjects = NULL;
 
 	CWallsObject*				m_pWallsObject = NULL;

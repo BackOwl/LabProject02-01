@@ -129,9 +129,9 @@ int CMesh::CheckRayIntersection(XMVECTOR& xmvPickRayOrigin, XMVECTOR& xmvPickRay
 //큐브 정육면체
 CCubeMesh::CCubeMesh(float fWidth, float fHeight, float fDepth) : CMesh(6)
 {
-	float fHalfWidth = fWidth * 0.5f;
-	float fHalfHeight = fHeight * 0.5f;
-	float fHalfDepth = fDepth * 0.5f;
+	float fHalfWidth = fWidth * 1.0f;
+	float fHalfHeight = fHeight * 1.0f;
+	float fHalfDepth = fDepth * 1.0f;
 
 	CPolygon *pFrontFace = new CPolygon(4);
 	pFrontFace->SetVertex(0, CVertex(-fHalfWidth, +fHalfHeight, -fHalfDepth));
@@ -475,10 +475,9 @@ void CAxisMesh::Render(HDC hDCFrameBuffer)
 }
 
 //스플라인 
-float* CCubeMesh::CRandomRail(float fWidth , float fHeight, float fDepth) {
+float* CCubeMesh::CRandomRail(float fWidth , float fHeight, float fDepth, int Range) {
 	//180 디폴트. 20개씩. 0.4 이내에서 
-	float default_vertex[24]{};
-	float vertex_list[540]{};
+	
 	//+++
 	default_vertex[0] = fWidth;
 	default_vertex[1] = fHeight;
@@ -535,7 +534,7 @@ float* CCubeMesh::CRandomRail(float fWidth , float fHeight, float fDepth) {
 		vertex_list[(i / 5) * 3 + 62] = ((-t * t * t + 2 * t * t - t) * default_vertex[2] + (3 * t * t * t - 5 * t * t + 2) * default_vertex[5] + (-3 * t * t * t + 4 * t * t + t) * default_vertex[8] + (t * t * t - t * t) * default_vertex[11]) / 2;
 
 	}
-	for (int k = 2; k < 9; ++k) {
+	for (int k = 2; k < 8; ++k) {
 		for (int i = 100; i < 200; i += 5) {
 			t = float(0.005 * i);
 			vertex_list[((k - 1) * 60) + ((i / 5) * 3)] = (2 * t * t - 3 * t + 1) * default_vertex[((k - 1) * 3) % 24] + (-4 * t * t + 4 * t) * default_vertex[(k * 3) % 24] + (2 * t * t - t) * default_vertex[((k + 1) * 3) % 24];
