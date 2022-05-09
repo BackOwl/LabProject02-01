@@ -29,7 +29,6 @@ public:
 	int							m_count = 0;
 	int							test_count = 0;
 	float* m_object = NULL;
-	XMFLOAT3 rotate;
 
 	CCamera*					m_pCamera = NULL;
 

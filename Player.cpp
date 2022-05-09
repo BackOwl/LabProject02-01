@@ -88,13 +88,17 @@ void CPlayer::Move(float* m_ppObjects)
 
 	m_xmf3AfterPosition = Vector3::Add(m_xmf3Position, m_xmf3AfterPosition, 0.2);
 
+	XMFLOAT3 Roate = { m_xmf3AfterPosition.x- m_xmf3Position.x ,m_xmf3AfterPosition.y- m_xmf3Position.y ,m_xmf3AfterPosition.z- m_xmf3Position.z };
+	Rotate(Roate.y / Roate.z, Roate.x / Roate.z, Roate.y / Roate.x);
+
+	
+	//Rotate(m_xmf3AfterPosition.y / m_xmf3AfterPosition.z, m_xmf3AfterPosition.x / m_xmf3AfterPosition.z, m_xmf3AfterPosition.y / m_xmf3AfterPosition.x);
+
 	//좀 더 역동적인 카메라 모션이 됐다 멀미나..
 	m_pCamera->Rotate((m_xmf3Position.x - m_xmf3AfterPosition.x)/ 3.0f, (m_xmf3Position.y - m_xmf3AfterPosition.y) / 3.0f, (m_xmf3Position.z - m_xmf3AfterPosition.z) / 3.0f);
 	SetPosition(m_xmf3AfterPosition.x, m_xmf3AfterPosition.y, m_xmf3AfterPosition.z);
 
-	rotate -= Vector3::Add(XMFLOAT3(0.0f,0.0f,0.0f), m_xmf3AfterPosition, 0.2);
-	Rotate(rotate.x, rotate.y, rotate.z);
-
+	
 
 	//객체 화면 돌리는 함수Rotate(1.0f, 1.0f, 1.0f);
 	
