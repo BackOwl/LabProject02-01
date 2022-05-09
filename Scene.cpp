@@ -51,6 +51,9 @@ void CScene::BuildObjects()
 		m_ppObjects[i]->SetMovingSpeed(0.5f);
 
 	}
+
+	m_pPlayer->m_xmf3AfterPosition = XMFLOAT3(m_Objects_pos[0], m_Objects_pos[1], m_Objects_pos[2]); //기본 지정
+
 	/*atan2f(m_Objects_pos[(i * 3) + 1], m_Objects_pos[(i * 3) + 2] * 180 / 3.1415f),
 			(atan2f(m_Objects_pos[(i * 3) ], m_Objects_pos[(i * 3) + 2] * 180 / 3.1415f)),
 			(atan2f(m_Objects_pos[(i * 3) ], m_Objects_pos[(i * 3) + 1] * 180 / 3.1415f))

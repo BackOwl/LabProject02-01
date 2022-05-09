@@ -1,7 +1,10 @@
-﻿  Player.cpp
-  코드를 생성하고 있습니다.
-  4 of 312 functions ( 1.3%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    8 functions had inline decision re-evaluated but remain unchanged
-  코드를 생성했습니다.
-  LabProject02-01.vcxproj -> C:\LabProject_Software Renderer\x64\Release\LabProject02-01.exe
+﻿  Camera.cpp
+  GameFramework.cpp
+  LabProject02-01.cpp
+  Player.cpp
+C:\LabProject_Software Renderer\LabProject02-01\Player.cpp(89,77): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+C:\LabProject_Software Renderer\LabProject02-01\Player.cpp(95,75): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+C:\LabProject_Software Renderer\LabProject02-01\Player.cpp(95,76): error C2678: 이항 '-=': 왼쪽 피연산자로 'DirectX::XMFLOAT3' 형식을 사용하는 연산자가 없거나 허용되는 변환이 없습니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\DirectXMathVector.inl(14673,30): message : 'DirectX::XMVECTOR &DirectX::operator -=(DirectX::XMVECTOR &,DirectX::FXMVECTOR) noexcept'일 수 있습니다.
+C:\LabProject_Software Renderer\LabProject02-01\Player.cpp(95,76): message : 인수 목록 '(DirectX::XMFLOAT3, DirectX::XMFLOAT3)'을(를) 일치시키는 동안
+  Scene.cpp

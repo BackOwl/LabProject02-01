@@ -18,6 +18,8 @@ public:
 	XMFLOAT3					m_xmf3CameraOffset = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	XMFLOAT3					m_xmf3Velocity = XMFLOAT3(0.0f, 0.0f, 0.0f);
 
+	XMFLOAT3					m_xmf3AfterPosition = XMFLOAT3(0.0f, 0.0f, 0.0f);
+
 	float						m_fFriction = 125.0f;
 
 	float           			m_fPitch = 0.0f;
@@ -25,7 +27,9 @@ public:
 	float           			m_fRoll = 0.0f;
 
 	int							m_count = 0;
+	int							test_count = 0;
 	float* m_object = NULL;
+	XMFLOAT3 rotate;
 
 	CCamera*					m_pCamera = NULL;
 

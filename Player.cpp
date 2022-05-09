@@ -1,6 +1,8 @@
+#include<math.h>
 #include "stdafx.h"
 #include "Player.h"
 #include "Mesh.h"
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -63,11 +65,41 @@ void CPlayer::Move(float x, float y, float z)
 
 void CPlayer::Move(float* m_ppObjects)
 {
-		m_count = (m_count + 1) % 150;
-		SetPosition(m_ppObjects[m_count * 3], m_ppObjects[(m_count * 3) + 1], m_ppObjects[(m_count * 3) + 2]);
-		m_pCamera->Rotate((m_ppObjects[(m_count-1) * 3] -m_ppObjects[m_count * 3]) / 3.0f, (m_ppObjects[(m_count - 1) * 3+1] - m_ppObjects[(m_count * 3) + 1]) / 3.0f, (m_ppObjects[(m_count - 1) * 3+2] - m_ppObjects[(m_count * 3) + 2]) / 3.0f);
+	//m_count = (m_count + 1) % 160;
+	//SetPosition(m_ppObjects[m_count * 3], m_ppObjects[(m_count * 3) + 1], m_ppObjects[(m_count * 3) + 2]);
+	
+	//1. 현재 내위치를 m_count에서 비교해야함.. 
+	//2.속도 대충 설정해서 점점 늘어나게 해야함.. 어케해? 
+	//3 지나갈 경우 m_count를 ++ 하도록 해야함.ㅁ. 
+	//현재 좌표와,count -1 , count +1 에서 내부 밖인지 확인. (육면체 내부가 아니라 점이기 때문에 괜찮을듯 ) 
 
-//m_xmf3Velocity = Vector3::Add(m_xmf3Velocity, XMFLOAT3(m_ppObjects[m_count * 3]*0.06, m_ppObjects[(m_count * 3) + 1]*0.06, m_ppObjects[(m_count * 3) + 2]*0.06));
+	float fDistance = (m_ppObjects[(((m_count + 1) % 160) * 3)] -m_xmf3AfterPosition.x)* (m_ppObjects[(((m_count + 1) % 160) * 3)] - m_xmf3AfterPosition.x) +
+		(m_ppObjects[(((m_count + 1) % 160) * 3+ 1) ]- m_xmf3AfterPosition.y)* (m_ppObjects[(((m_count + 1) % 160) * 3 + 1)] - m_xmf3AfterPosition.y) +
+		(m_ppObjects[(((m_count+1) % 160) * 3) + 2] - m_xmf3AfterPosition.z)* (m_ppObjects[(((m_count+1) % 160) * 3) + 2] - m_xmf3AfterPosition.z);
+
+	if (fDistance<=(0.001f)&& (0.000f)<= fDistance) {
+		m_count = (m_count + 1) % 160;
+	}// 바깥일 경우 
+
+
+	m_xmf3AfterPosition.x =(m_ppObjects[(((m_count +1)% 160) * 3) ] - m_ppObjects[(((m_count) % 160) * 3)]) ;
+	m_xmf3AfterPosition.y = (m_ppObjects[(((m_count +1)% 160) * 3) +1] - m_ppObjects[(((m_count) % 160) * 3)+1]) ;
+	m_xmf3AfterPosition.z = (m_ppObjects[(((m_count +1)% 160) * 3) +2] - m_ppObjects[(((m_count) % 160) * 3)+2]) ;
+
+	m_xmf3AfterPosition = Vector3::Add(m_xmf3Position, m_xmf3AfterPosition, 0.2);
+
+	//좀 더 역동적인 카메라 모션이 됐다 멀미나..
+	m_pCamera->Rotate((m_xmf3Position.x - m_xmf3AfterPosition.x)/ 3.0f, (m_xmf3Position.y - m_xmf3AfterPosition.y) / 3.0f, (m_xmf3Position.z - m_xmf3AfterPosition.z) / 3.0f);
+	SetPosition(m_xmf3AfterPosition.x, m_xmf3AfterPosition.y, m_xmf3AfterPosition.z);
+
+	rotate -= Vector3::Add(XMFLOAT3(0.0f,0.0f,0.0f), m_xmf3AfterPosition, 0.2);
+	Rotate(rotate.x, rotate.y, rotate.z);
+
+
+	//객체 화면 돌리는 함수Rotate(1.0f, 1.0f, 1.0f);
+	
+	//SetRotationAxis
+
 }
 
 void CPlayer::Rotate(float fPitch, float fYaw, float fRoll)
