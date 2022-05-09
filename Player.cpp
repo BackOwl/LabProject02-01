@@ -26,7 +26,7 @@ void CPlayer::SetCameraOffset(XMFLOAT3& xmf3CameraOffset)
 	m_pCamera->SetLookAt(Vector3::Add(m_xmf3Position, m_xmf3CameraOffset), m_xmf3Position, m_xmf3Up);
 	m_pCamera->GenerateViewMatrix();
 }
-//비행기 움직이는 곳 
+//비행기 카메라 움직이는 곳 
 void CPlayer::Move(DWORD dwDirection, float fDistance)
 {
 	if (dwDirection)
@@ -65,6 +65,7 @@ void CPlayer::Move(float* m_ppObjects)
 {
 		m_count = (m_count + 1) % 150;
 		SetPosition(m_ppObjects[m_count * 3], m_ppObjects[(m_count * 3) + 1], m_ppObjects[(m_count * 3) + 2]);
+		m_pCamera->Rotate((m_ppObjects[(m_count-1) * 3] -m_ppObjects[m_count * 3]) / 3.0f, (m_ppObjects[(m_count - 1) * 3+1] - m_ppObjects[(m_count * 3) + 1]) / 3.0f, (m_ppObjects[(m_count - 1) * 3+2] - m_ppObjects[(m_count * 3) + 2]) / 3.0f);
 
 //m_xmf3Velocity = Vector3::Add(m_xmf3Velocity, XMFLOAT3(m_ppObjects[m_count * 3]*0.06, m_ppObjects[(m_count * 3) + 1]*0.06, m_ppObjects[(m_count * 3) + 2]*0.06));
 }
