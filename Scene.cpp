@@ -44,7 +44,7 @@ void CScene::BuildObjects()
 	for (int i = 0; i < range * 8; ++i) {
 		m_ppObjects[i] = new CExplosiveObject();
 		m_ppObjects[i]->SetMesh(pCubeMesh);
-		m_ppObjects[i]->SetColor(RGB(0, 0, 0));
+		m_ppObjects[i]->SetColor(RGB(255, 255, 255));
 		m_ppObjects[i]->SetPosition(m_Objects_pos[i * 3], m_Objects_pos[(i * 3) + 1], m_Objects_pos[(i * 3) + 2]);
 		m_ppObjects[i]->SetRotationAxis(XMFLOAT3(0.0f, 0.0f, 0.0f));
 		m_ppObjects[i]->SetRotationSpeed(1.0f);
@@ -56,7 +56,7 @@ void CScene::BuildObjects()
 	for (int i = range * 8; i < m_nObjects; ++i) {
 		m_ppObjects[i] = new CExplosiveObject();
 		m_ppObjects[i]->SetMesh(pEnemyMesh);
-		m_ppObjects[i]->SetColor(RGB(255, 255, 255));
+		m_ppObjects[i]->SetColor(RGB( 0, 0, 0));
 		m_ppObjects[i]->SetPosition(m_Objects_pos[(i-(range*8))*8 * 3], m_Objects_pos[((i - (range * 8)) * 8* 3) + 1], m_Objects_pos[((i - (range * 8)) * 8* 3) + 2]);
 		m_ppObjects[i]->SetRotationAxis(XMFLOAT3(0.0f, 1.0f, 1.0f));
 		m_ppObjects[i]->SetRotationSpeed(90.0f);

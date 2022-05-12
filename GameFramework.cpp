@@ -246,7 +246,7 @@ void CGameFramework::FrameAdvance()
 
 	AnimateObjects();
 
-    ClearFrameBuffer(RGB(114, 0 , 0));
+    ClearFrameBuffer(RGB(160, 0 , 0));
 
 	CCamera* pCamera = m_pPlayer->GetCamera();
 	if (m_pScene) m_pScene->Render(m_hDCFrameBuffer, pCamera);

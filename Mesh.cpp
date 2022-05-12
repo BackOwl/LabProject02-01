@@ -452,7 +452,7 @@ void CAxisMesh::Render(HDC hDCFrameBuffer)
 {
 	XMFLOAT3 f3PreviousProject = CGraphicsPipeline::Project(m_ppPolygons[0]->m_pVertices[0].m_xmf3Position);
 	XMFLOAT3 f3CurrentProject = CGraphicsPipeline::Project(m_ppPolygons[0]->m_pVertices[1].m_xmf3Position);
-	HPEN hPen = ::CreatePen(PS_SOLID, 0, RGB(255, 0, 0));
+	HPEN hPen = ::CreatePen(PS_SOLID, 0, RGB(255, 204, 20));
 	HPEN hOldPen = (HPEN)::SelectObject(hDCFrameBuffer, hPen);
 	::Draw2DLine(hDCFrameBuffer, f3PreviousProject, f3CurrentProject);
 	::SelectObject(hDCFrameBuffer, hOldPen);
@@ -460,7 +460,7 @@ void CAxisMesh::Render(HDC hDCFrameBuffer)
 
 	f3PreviousProject = CGraphicsPipeline::Project(m_ppPolygons[1]->m_pVertices[0].m_xmf3Position);
 	f3CurrentProject = CGraphicsPipeline::Project(m_ppPolygons[1]->m_pVertices[1].m_xmf3Position);
-	hPen = ::CreatePen(PS_SOLID, 0, RGB(0, 0, 255));
+	hPen = ::CreatePen(PS_SOLID, 0, RGB(0, 0, 0));
 	hOldPen = (HPEN)::SelectObject(hDCFrameBuffer, hPen);
 	::Draw2DLine(hDCFrameBuffer, f3PreviousProject, f3CurrentProject);
 	::SelectObject(hDCFrameBuffer, hOldPen);
@@ -468,7 +468,7 @@ void CAxisMesh::Render(HDC hDCFrameBuffer)
 
 	f3PreviousProject = CGraphicsPipeline::Project(m_ppPolygons[2]->m_pVertices[0].m_xmf3Position);
 	f3CurrentProject = CGraphicsPipeline::Project(m_ppPolygons[2]->m_pVertices[1].m_xmf3Position);
-	hPen = ::CreatePen(PS_SOLID, 0, RGB(0, 255, 0));
+	hPen = ::CreatePen(PS_SOLID, 0, RGB(0, 102, 102));
 	hOldPen = (HPEN)::SelectObject(hDCFrameBuffer, hPen);
 	::Draw2DLine(hDCFrameBuffer, f3PreviousProject, f3CurrentProject);
 	::SelectObject(hDCFrameBuffer, hOldPen);

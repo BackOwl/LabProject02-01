@@ -69,14 +69,6 @@ void CPlayer::Move(float x, float y, float z)
 
 void CPlayer::Move(float* m_ppObjects)
 {
-	//m_count = (m_count + 1) % 160;
-	//SetPosition(m_ppObjects[m_count * 3], m_ppObjects[(m_count * 3) + 1], m_ppObjects[(m_count * 3) + 2]);
-	
-	//1. 현재 내위치를 m_count에서 비교해야함.. 
-	//2.속도 대충 설정해서 점점 늘어나게 해야함.. 어케해? 
-	//3 지나갈 경우 m_count를 ++ 하도록 해야함.ㅁ. 
-	//현재 좌표와,count -1 , count +1 에서 내부 밖인지 확인. (육면체 내부가 아니라 점이기 때문에 괜찮을듯 ) 
-
 	float fDistance = (m_ppObjects[(((m_count + 1) % 160) * 3)] -m_xmf3AfterPosition.x)* (m_ppObjects[(((m_count + 1) % 160) * 3)] - m_xmf3AfterPosition.x) +
 		(m_ppObjects[(((m_count + 1) % 160) * 3+ 1) ]- m_xmf3AfterPosition.y)* (m_ppObjects[(((m_count + 1) % 160) * 3 + 1)] - m_xmf3AfterPosition.y) +
 		(m_ppObjects[(((m_count+1) % 160) * 3) + 2] - m_xmf3AfterPosition.z)* (m_ppObjects[(((m_count+1) % 160) * 3) + 2] - m_xmf3AfterPosition.z);
