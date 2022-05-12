@@ -148,9 +148,14 @@ void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPA
 			m_pPlayer->Move(m_pScene->m_Objects_pos);
 			break;
 
-		case 'z'://½ÇÇè
-			
-			
+		case 'Q':
+			m_pPlayer->m_Cameratype = 0;
+			break;
+		case 'W':
+			m_pPlayer->m_Cameratype = 1;
+			break;
+		case 'E':
+			m_pPlayer->m_Cameratype = 2;
 			break;
 		default:
 			m_pScene->OnProcessingKeyboardMessage(hWnd, nMessageID, wParam, lParam);
