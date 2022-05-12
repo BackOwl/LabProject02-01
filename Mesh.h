@@ -62,7 +62,7 @@ class CCubeMesh : public CMesh
 	float default_vertex[24]{};
 	float vertex_list[480]{};
 public:
-	CCubeMesh(float fWidth = 4.0f, float fHeight = 4.0f, float fDepth = 4.0f);
+	CCubeMesh(float fWidth = 4.0f, float fHeight = 4.0f, float fDepth = 4.0f, float flength =1.0f);
 	virtual ~CCubeMesh() { }
 	// 스플라인 
 	float* CRandomRail(float fWidth = 4.0f, float fHeight = 4.0f, float fDepth = 4.0f,int Range =20);

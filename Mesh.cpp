@@ -127,11 +127,12 @@ int CMesh::CheckRayIntersection(XMVECTOR& xmvPickRayOrigin, XMVECTOR& xmvPickRay
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //큐브 정육면체
-CCubeMesh::CCubeMesh(float fWidth, float fHeight, float fDepth) : CMesh(6)
+
+CCubeMesh::CCubeMesh(float fWidth, float fHeight, float fDepth, float flength) : CMesh(6)
 {
-	float fHalfWidth = fWidth * 1.0f;
-	float fHalfHeight = fHeight * 1.0f;
-	float fHalfDepth = fDepth * 1.0f;
+	float fHalfWidth = fWidth * flength;
+	float fHalfHeight = fHeight * flength;
+	float fHalfDepth = fDepth * flength;
 
 	CPolygon *pFrontFace = new CPolygon(4);
 	pFrontFace->SetVertex(0, CVertex(-fHalfWidth, +fHalfHeight, -fHalfDepth));

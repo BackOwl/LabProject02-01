@@ -10,7 +10,8 @@ public:
 	CScene(CPlayer *pPlayer);
 	virtual ~CScene();
 	CGameObject					**m_ppObjects = NULL;
-	int m_count = 0;
+	int							m_count = 0;
+	int							 range = 20;
 	float* m_Objects_pos;
 private:
 	int							m_nObjects = 0;
@@ -34,6 +35,7 @@ public:
 	void CheckObjectByWallCollisions();
 	void CheckPlayerByWallCollision();
 	void CheckObjectByBulletCollisions();
+	void CheckObjectByEnermyCollisions();
 
 	virtual void Animate(float fElapsedTime);
 	virtual void Render(HDC hDCFrameBuffer, CCamera* pCamera);

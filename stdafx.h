@@ -38,7 +38,7 @@ using namespace DirectX::PackedVector;
 #define DIR_DOWN				0x20
 #define DIR_SPACE				0x40
 
-#define EXPLOSION_DEBRISES		240
+#define EXPLOSION_DEBRISES		120
 
 #define RANDOM_COLOR			(0xFF000000 | ((rand() * 0xFFFFFF) / RAND_MAX))
 

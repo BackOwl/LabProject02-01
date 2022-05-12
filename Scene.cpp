@@ -33,14 +33,15 @@ void CScene::BuildObjects()
 
 	//큐브 객체 10개 생성하기 
 	CCubeMesh* pCubeMesh = new CCubeMesh(1.0f, 1.0f, 1.0f);
-	int range = 20;
+	CCubeMesh* pEnemyMesh = new CCubeMesh(1.0f, 1.0f, 1.0f,0.5f);
+	
 	m_Objects_pos = pCubeMesh->CRandomRail(20.0, 10.0, 20.0, range);
 
-	m_nObjects =range*8; //10
+	m_nObjects =range*9; //10
 	m_ppObjects = new CGameObject * [m_nObjects];
-	
 
-	for (int i = 0; i < m_nObjects; ++i) {
+
+	for (int i = 0; i < range * 8; ++i) {
 		m_ppObjects[i] = new CExplosiveObject();
 		m_ppObjects[i]->SetMesh(pCubeMesh);
 		m_ppObjects[i]->SetColor(RGB(255, 0, 0));
@@ -48,11 +49,22 @@ void CScene::BuildObjects()
 		m_ppObjects[i]->SetRotationAxis(XMFLOAT3(0.0f, 0.0f, 0.0f));
 		m_ppObjects[i]->SetRotationSpeed(1.0f);
 		m_ppObjects[i]->SetMovingDirection(XMFLOAT3(0.0f,0.0f,0.0f));
-		m_ppObjects[i]->SetMovingSpeed(0.5f);
+		m_ppObjects[i]->SetMovingSpeed(0.0f);
+
+	}
+	//장애물
+	for (int i = range * 8; i < m_nObjects; ++i) {
+		m_ppObjects[i] = new CExplosiveObject();
+		m_ppObjects[i]->SetMesh(pEnemyMesh);
+		m_ppObjects[i]->SetColor(RGB(140, 30, 138));
+		m_ppObjects[i]->SetPosition(m_Objects_pos[(i-(range*8))*8 * 3], m_Objects_pos[((i - (range * 8)) * 8* 3) + 1], m_Objects_pos[((i - (range * 8)) * 8* 3) + 2]);
+		m_ppObjects[i]->SetRotationAxis(XMFLOAT3(0.0f, 1.0f, 1.0f));
+		m_ppObjects[i]->SetRotationSpeed(90.0f);
+		m_ppObjects[i]->SetMovingDirection(XMFLOAT3(0.0f, 0.0f, 0.0f));
+		m_ppObjects[i]->SetMovingSpeed(0.0f);
 
 	}
 
-	m_pPlayer->m_xmf3AfterPosition = XMFLOAT3(m_Objects_pos[0], m_Objects_pos[1], m_Objects_pos[2]); //기본 지정
 
 	/*atan2f(m_Objects_pos[(i * 3) + 1], m_Objects_pos[(i * 3) + 2] * 180 / 3.1415f),
 			(atan2f(m_Objects_pos[(i * 3) ], m_Objects_pos[(i * 3) + 2] * 180 / 3.1415f)),
@@ -67,6 +79,8 @@ void CScene::BuildObjects()
 	m_ppObjects[0]->SetMovingDirection(XMFLOAT3(1.0f, 0.0f, 0.0f));
 	m_ppObjects[0]->SetMovingSpeed(10.5f);
 	*/
+
+	m_pPlayer->m_xmf3AfterPosition = XMFLOAT3(m_Objects_pos[0], m_Objects_pos[1], m_Objects_pos[2]); //기본 지정
 
 
 
@@ -269,6 +283,20 @@ void CScene::CheckObjectByBulletCollisions()
 		}
 	}
 }
+
+void CScene::CheckObjectByEnermyCollisions()
+{
+	for (int i = 0; i < m_nObjects; i++) m_ppObjects[i]->m_pObjectCollided = NULL;
+	for (int i = range * 8; i < range * 9; ++i)
+	{
+		if (m_ppObjects[i]->m_xmOOBB.Intersects(m_pPlayer->m_xmOOBB))
+		{
+			CExplosiveObject* pExplosiveObject = (CExplosiveObject*)m_ppObjects[i];
+			pExplosiveObject->m_bBlowingUp = true;
+			//m_ppObjects[i]->Reset()
+		}
+	}
+}
 CGameObject* CScene::RailPlayer(int m_nObjects, CCamera* pCamera) {
 	m_count = (m_count + 1) % m_nObjects;
 	XMFLOAT3 xmf3PickPosition;
@@ -306,8 +334,9 @@ void CScene::Animate(float fElapsedTime)
 	//CheckObjectByWallCollisions();
 
 	CheckObjectByObjectCollisions();
+	CheckObjectByEnermyCollisions();
 
-	CheckObjectByBulletCollisions();
+	//CheckObjectByBulletCollisions();
 }
 
 void CScene::Render(HDC hDCFrameBuffer, CCamera* pCamera)

@@ -80,11 +80,11 @@ void CPlayer::Move(float* m_ppObjects)
 	float fDistance = (m_ppObjects[(((m_count + 1) % 160) * 3)] -m_xmf3AfterPosition.x)* (m_ppObjects[(((m_count + 1) % 160) * 3)] - m_xmf3AfterPosition.x) +
 		(m_ppObjects[(((m_count + 1) % 160) * 3+ 1) ]- m_xmf3AfterPosition.y)* (m_ppObjects[(((m_count + 1) % 160) * 3 + 1)] - m_xmf3AfterPosition.y) +
 		(m_ppObjects[(((m_count+1) % 160) * 3) + 2] - m_xmf3AfterPosition.z)* (m_ppObjects[(((m_count+1) % 160) * 3) + 2] - m_xmf3AfterPosition.z);
-
+	
+	// 바깥일 경우 
 	if (fDistance<=(0.001f)&& (0.000f)<= fDistance) {
 		m_count = (m_count + 1) % 160;
-	}// 바깥일 경우 
-
+	}
 
 	m_xmf3AfterPosition.x =(m_ppObjects[(((m_count +1)% 160) * 3) ] - m_ppObjects[(((m_count) % 160) * 3)]) ;
 	m_xmf3AfterPosition.y = (m_ppObjects[(((m_count +1)% 160) * 3) +1] - m_ppObjects[(((m_count) % 160) * 3)+1]) ;
@@ -93,7 +93,6 @@ void CPlayer::Move(float* m_ppObjects)
 	m_xmf3AfterPosition = Vector3::Add(m_xmf3Position, m_xmf3AfterPosition, 0.2); //세번쨰 속도값
 	XMFLOAT3 A = Vector3::Normalize(XMFLOAT3(m_xmf3Position.x - m_xmf3AfterPosition.x, m_xmf3Position.y - m_xmf3AfterPosition.y, m_xmf3Position.z - m_xmf3AfterPosition.z));
 
-	//1
 	switch (m_Cameratype) {
 	case 0:
 		Rotate(m_xmf3Position.x - m_xmf3AfterPosition.x, m_xmf3Position.y - m_xmf3AfterPosition.y, m_xmf3Position.z - m_xmf3AfterPosition.z);
@@ -116,7 +115,7 @@ void CPlayer::Move(float* m_ppObjects)
 
 	//Rotate(m_xmf3Position.x - m_xmf3AfterPosition.x, m_xmf3Position.y - m_xmf3AfterPosition.y, m_xmf3Position.z - m_xmf3AfterPosition.z);
 	//XMFLOAT3 A = Vector3::Normalize(XMFLOAT3(m_xmf3Position.x - m_xmf3AfterPosition.x, m_xmf3Position.y - m_xmf3AfterPosition.y, m_xmf3Position.z - m_xmf3AfterPosition.z));
-		//LookAt( A,XMFLOAT3(0.0f,1.0f,0.0f));
+	//LookAt( A,XMFLOAT3(0.0f,1.0f,0.0f));
 	//Rotate(A.x, A.y, A.z);
 
 	//좀 더 역동적인 카메라 모션이 됐다 멀미나..
@@ -124,11 +123,6 @@ void CPlayer::Move(float* m_ppObjects)
 	
 	//SetPosition(m_xmf3AfterPosition.x, m_xmf3AfterPosition.y, m_xmf3AfterPosition.z);
 
-	
-
-	//객체 화면 돌리는 함수Rotate(1.0f, 1.0f, 1.0f);
-	
-	//SetRotationAxis
 
 }
 
