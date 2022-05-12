@@ -8,7 +8,7 @@ class CGameObject
 public:
 	CGameObject() { }
 	virtual ~CGameObject();
-
+	
 public:
 	bool						m_bActive = true;
 

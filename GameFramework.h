@@ -9,7 +9,6 @@ class CGameFramework
 public:
 	CGameFramework() { }
 	~CGameFramework() { }
-
 private:
 	HINSTANCE					m_hInstance = NULL;
 	HWND						m_hWnd = NULL;

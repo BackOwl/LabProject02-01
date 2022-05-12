@@ -77,7 +77,7 @@ void CGameFramework::BuildObjects()
 	m_pPlayer->SetPosition(0.0f, 0.0f, 0.0f);
 
 	m_pPlayer->SetMesh(pAirplaneMesh);
-	m_pPlayer->SetColor(RGB(0, 0, 255));
+	m_pPlayer->SetColor(RGB(250, 204, 20));
 	m_pPlayer->SetCamera(pCamera);
 	m_pPlayer->SetCameraOffset(XMFLOAT3(0.0f, 5.0f, -15.0f)); //5.0f
 	//m_pPlayer->Rotate(0.0f, 180.0f,0.0f);
@@ -147,7 +147,6 @@ void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPA
 			m_pPlayer->SetPosition(m_pPlayer->m_xmf3AfterPosition.x, m_pPlayer->m_xmf3AfterPosition.y, m_pPlayer->m_xmf3AfterPosition.z);
 			m_pPlayer->Move(m_pScene->m_Objects_pos);
 			break;
-
 		case 'Q':
 			m_pPlayer->m_Cameratype = 0;
 			break;
@@ -247,7 +246,7 @@ void CGameFramework::FrameAdvance()
 
 	AnimateObjects();
 
-    ClearFrameBuffer(RGB(255, 255, 255));
+    ClearFrameBuffer(RGB(114, 0 , 0));
 
 	CCamera* pCamera = m_pPlayer->GetCamera();
 	if (m_pScene) m_pScene->Render(m_hDCFrameBuffer, pCamera);
