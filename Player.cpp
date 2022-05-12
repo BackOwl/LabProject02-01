@@ -105,17 +105,6 @@ void CPlayer::Move(float* m_ppObjects)
 		break;
 	}
 
-	//Rotate(m_xmf3Position.x - m_xmf3AfterPosition.x, m_xmf3Position.y - m_xmf3AfterPosition.y, m_xmf3Position.z - m_xmf3AfterPosition.z);
-	//XMFLOAT3 A = Vector3::Normalize(XMFLOAT3(m_xmf3Position.x - m_xmf3AfterPosition.x, m_xmf3Position.y - m_xmf3AfterPosition.y, m_xmf3Position.z - m_xmf3AfterPosition.z));
-	//LookAt( A,XMFLOAT3(0.0f,1.0f,0.0f));
-	//Rotate(A.x, A.y, A.z);
-
-	//좀 더 역동적인 카메라 모션이 됐다 멀미나..
-	//m_pCamera->Rotate((m_xmf3Position.x - m_xmf3AfterPosition.x)/ 3.0f, (m_xmf3Position.y - m_xmf3AfterPosition.y) / 3.0f, (m_xmf3Position.z - m_xmf3AfterPosition.z) / 3.0f);
-	
-	//SetPosition(m_xmf3AfterPosition.x, m_xmf3AfterPosition.y, m_xmf3AfterPosition.z);
-
-
 }
 
 void CPlayer::Rotate(float fPitch, float fYaw, float fRoll)

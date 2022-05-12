@@ -66,20 +66,6 @@ void CScene::BuildObjects()
 	}
 
 
-	/*atan2f(m_Objects_pos[(i * 3) + 1], m_Objects_pos[(i * 3) + 2] * 180 / 3.1415f),
-			(atan2f(m_Objects_pos[(i * 3) ], m_Objects_pos[(i * 3) + 2] * 180 / 3.1415f)),
-			(atan2f(m_Objects_pos[(i * 3) ], m_Objects_pos[(i * 3) + 1] * 180 / 3.1415f))
-
-	m_ppObjects[0] = new CExplosiveObject();
-	m_ppObjects[0]->SetMesh(pCubeMesh);
-	m_ppObjects[0]->SetColor(RGB(255, 0, 0));
-	m_ppObjects[0]->SetPosition(-13.5f, 0.0f, -14.0f);
-	m_ppObjects[0]->SetRotationAxis(XMFLOAT3(0.0f, 1.0f, 1.0f));
-	m_ppObjects[0]->SetRotationSpeed(90.0f);
-	m_ppObjects[0]->SetMovingDirection(XMFLOAT3(1.0f, 0.0f, 0.0f));
-	m_ppObjects[0]->SetMovingSpeed(10.5f);
-	*/
-
 	m_pPlayer->m_xmf3AfterPosition = XMFLOAT3(m_Objects_pos[0], m_Objects_pos[1], m_Objects_pos[2]); //기본 지정
 
 

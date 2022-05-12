@@ -143,7 +143,6 @@ void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPA
 			m_pLockedObject = NULL;
 			break;
 		case VK_SPACE:
-			//m_pLockedObject= m_pScene->RailPlayer(160,m_pPlayer->m_pCamera); //ÀÌµ¿
 			m_pPlayer->SetPosition(m_pPlayer->m_xmf3AfterPosition.x, m_pPlayer->m_xmf3AfterPosition.y, m_pPlayer->m_xmf3AfterPosition.z);
 			m_pPlayer->Move(m_pScene->m_Objects_pos);
 			break;
