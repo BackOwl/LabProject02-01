@@ -22,6 +22,10 @@ void CPlayer::SetPosition(float x, float y, float z)
 	CGameObject::SetPosition(x, y, z);
 }
 
+void CPlayer::SetRotation(float fPitch, float fYaw, float fRoll)
+{
+}
+
 void CPlayer::SetCameraOffset(XMFLOAT3& xmf3CameraOffset)
 {
 	m_xmf3CameraOffset = xmf3CameraOffset;
@@ -88,8 +92,7 @@ void CPlayer::Move(float* m_ppObjects)
 
 	m_xmf3AfterPosition = Vector3::Add(m_xmf3Position, m_xmf3AfterPosition, 0.2);
 
-	XMFLOAT3 Roate = { m_xmf3AfterPosition.x- m_xmf3Position.x ,m_xmf3AfterPosition.y- m_xmf3Position.y ,m_xmf3AfterPosition.z- m_xmf3Position.z };
-	Rotate(Roate.y / Roate.z, Roate.x / Roate.z, Roate.y / Roate.x);
+	Rotate(m_xmf3Position.x - m_xmf3AfterPosition.x, m_xmf3Position.y - m_xmf3AfterPosition.y, m_xmf3Position.z - m_xmf3AfterPosition.z);
 
 	
 	//Rotate(m_xmf3AfterPosition.y / m_xmf3AfterPosition.z, m_xmf3AfterPosition.x / m_xmf3AfterPosition.z, m_xmf3AfterPosition.y / m_xmf3AfterPosition.x);

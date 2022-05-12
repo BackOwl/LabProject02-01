@@ -67,17 +67,20 @@ void CGameFramework::BuildObjects()
 	pCamera->SetViewport(0, 0, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
 	pCamera->GeneratePerspectiveProjectionMatrix(1.01f, 500.0f, 60.0f);
 	pCamera->SetFOVAngle(60.0f);
-
+	
+	//pCamera->Rotate(100.0f, 0.0f, 0.0f);
 	pCamera->GenerateOrthographicProjectionMatrix(1.01f, 50.0f, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
 //ÁÖÀÎ°ø °´Ã¼ ¿©±ê³× 
 	CAirplaneMesh* pAirplaneMesh = new CAirplaneMesh(6.0f, 6.0f, 1.0f);
 
 	m_pPlayer = new CAirplanePlayer();
 	m_pPlayer->SetPosition(0.0f, 0.0f, 0.0f);
+
 	m_pPlayer->SetMesh(pAirplaneMesh);
 	m_pPlayer->SetColor(RGB(0, 0, 255));
 	m_pPlayer->SetCamera(pCamera);
-	m_pPlayer->SetCameraOffset(XMFLOAT3(0.0f, 5.0f, -15.0f));
+	m_pPlayer->SetCameraOffset(XMFLOAT3(0.0f, 5.0f, -15.0f)); //5.0f
+	//m_pPlayer->Rotate(0.0f, 180.0f,0.0f);
 
 	CCubeMesh* pCubeMesh = new CCubeMesh(1.0f, 1.0f, 1.0f);
 	m_pPlayer->m_object = pCubeMesh-> CRandomRail(20.0, 10.0, 20.0, 20);
@@ -145,6 +148,10 @@ void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPA
 			m_pPlayer->Move(m_pScene->m_Objects_pos);
 			break;
 
+		case 'z'://½ÇÇè
+			
+			
+			break;
 		default:
 			m_pScene->OnProcessingKeyboardMessage(hWnd, nMessageID, wParam, lParam);
 			break;

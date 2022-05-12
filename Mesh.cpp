@@ -511,14 +511,6 @@ float* CCubeMesh::CRandomRail(float fWidth , float fHeight, float fDepth, int Ra
 	default_vertex[22] = -fHeight;
 	default_vertex[23] = -fDepth;
 
-	//for (int i = 0; i <9;++i) {
-	//	for (int k = 0; k < 100; k+=5) {
-	//		vertex_list[(i * 20) + ((k / 5) * 3)] = ;//x
-	//		vertex_list[(i * 20) + (((k / 5) * 3) + 1)] = ;//y
-	//		vertex_list[(i * 20) + (((k / 5) * 3) + 2)] = ;//z
-	//	}
-	//}
-
 	float t{};
 	for (int i = 0; i < 100; i += 5) {
 		t = float(0.005 * i);
